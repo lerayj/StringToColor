@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>StringToColor</title>
+	<link rel="stylesheet" type="text/css" href="stringToColor.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+	<input class="string-to-color" type="text" />
+
+	<div>
+		<p>Hexa code: <span class="hexa-code"></span></p>
+	</div>	
+	<div class="gradient-container">
+
+	</div>
+
+	<script type="text/javascript" src="stringToColor.js"></script>
+	<script type="text/javascript">
+	$(".string-to-color").on('input', function(){
+		$(".gradient-container").empty();
+		var hexaCode = strToHexa($(".string-to-color").val(), false);
+		$("body").attr("style", "background-color: " + hexaCode);
+		$(".hexa-code").empty().append(hexaCode);
+		var gradients = getGradient(hexaCode, 5);
+		gradients.forEach(function(elem){
+			$(".gradient-container").append("<div class='gradient-box' style='background-color:" + elem + "'></div>");			
+		});
+
+	});
+		
+	</script>		
+</body>
+</html>
